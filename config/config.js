@@ -6,7 +6,6 @@ class Config {
     const file = path.resolve(
       `${__dirname}/${process.env.NODE_ENV}.config.json`
     );
-console.log(__dirname);
     try {
       this.values = JSON.parse(fs.readFileSync(file));
     } catch(e) {
