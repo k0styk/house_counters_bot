@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "dependencies": {
-    "node-telegram-bot-api": "^0.30.0"
+    "knex": "^0.14.4",
+    "node-telegram-bot-api": "^0.30.0",
+    "pg": "^7.4.1"
   },
   "devDependencies": {},
   "scripts": {
