@@ -1,9 +1,12 @@
 process.env["NTBA_FIX_319"] = 1;
-const config = require('../config/config');
+const config = require('./../config/config');
 const TelegramBot = require('node-telegram-bot-api');
 const bot = new TelegramBot(config.getValue('token'), { polling: true });
 const fs = require('fs');
 const path = require('path');
+
+const Connector = require('./database/dbConnector');
+const db = new Connector(config.getValue('db'));
 
 bot.on('message', (msg) => {
   const chatId = msg.chat.id;
@@ -27,3 +30,30 @@ bot.on('message', (msg) => {
   }
   
 });
+
+bot.onText(/\/test/, (msg, [source, match]) => {
+  
+});
+
+/*
+
+db.addData(1,
+    JSON.stringify({
+      hot_b: '330'
+    }),
+    JSON.stringify({
+      cold_b: '330'
+    }),
+    JSON.stringify({
+      simple: '14000'
+    }),
+    '2018-4-18',
+    '2018-4-17',
+    6000,
+    6205,
+    50)
+    .then(data => {
+      console.log(data);
+    });
+
+*/
