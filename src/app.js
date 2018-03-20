@@ -25,5 +25,25 @@ bot.on('message', (msg) => {
         bot.sendMessage(chatId, 'Здесь кого-то надо наказать?');
       });
   }
+
+  var myText = 'What is your favorite meal?';
+ 
+  var keyboardStr = JSON.stringify({
+      inline_keyboard: [
+        [
+          {text:'Sandwich',callback_data:'sandwich'},
+          {text:'A juicy steak',callback_data:'steak'}
+        ]
+      ]
+  });
+ 
+  var keyboard = {reply_markup: JSON.parse(keyboardStr)};
+  bot.sendMessage(chatId, myText, keyboard);
   
+});
+
+bot.on("callback_query", (callbackQuery) => {
+  console.log(callbackQuery);
+  const msg = callbackQuery.message;
+  bot.answerCallbackQuery(callbackQuery.id).then(() => bot.sendMessage(msg.chat.id, "You clicked!"));
 });
